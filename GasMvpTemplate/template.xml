@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Gas Mvp快速实现"
+    minApi="9"
+    minBuildApi="15"
+    description="创建MVP单个Activity所需要的全部组件">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="pageName"
+        name="Page Name"
+        type="string"
+        constraints="unique|nonempty"
+        default="Main"
+        help="请填写页面名,如填写 Main,会自动生成 MainActivity, MainPresenter 等文件" />
+
+    <parameter
+            id="packageName"
+            name="Activity Package Name"
+            type="string"
+            constraints="package"
+            default="com.mycompany.myapp"
+            help="请填写你的项目包名,请认真核实此包名是否是正确的项目包名"/>
+        
+<parameter
+       id="generateActivityLayout"
+       name="Generate Activity Layout"
+       type="boolean"
+       default="true"
+       help="是否需要给 Activity 生成布局" />
+
+<parameter
+        id="activityLayoutName"
+        name="Activity Layout Name"
+        type="string"
+        constraints="layout|nonempty"
+        suggest="${activityToLayout(pageName)}"
+        default="activity_main"
+        visibility="generateActivityLayout"
+        help="Activity 布局名" />
+
+
+   
+
+
+ <parameter
+        id="ativityPackageName"
+        name="Ativity Package Name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}"
+        help="Activity 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+        />
+
+
+<parameter
+        id="needModel"
+        name="Generate Model"
+        type="boolean"
+        default="true"
+        help="是否需要生成mvp的Model ? 不勾选则不生成" />
+
+
+<parameter
+        id="modelPackageName"
+        name="Model Package Name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}.mvp"
+        visibility="needModel"
+        help="Model 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+        />
+
+
+ <parameter
+        id="contractPackageName"
+        name="Contract Package Name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}.mvp"
+        help="Contract 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+        />  
+
+
+ <parameter
+        id="presenterPackageName"
+        name="Presenter Package Name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}.mvp"
+        help="Presenter 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+        />  
+
+
+
+
+<parameter
+        id="needMoudle"
+        name="Generate Dagger Moudle"
+        type="boolean"
+        default="true"
+        help="是否需要生成 Dagger 的 Moudle ? 不勾选则不生成"
+        />
+        
+        <parameter
+               id="moudlePackageName"
+               name="Moudle Package Name"
+               type="string"
+               constraints="package"
+               suggest="${packageName}.di"
+               visibility="needMoudle"
+               help="Moudle 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+               />
+
+<parameter
+        id="componentPackageName"
+        name="Component Package Name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}.di"
+        help="Component 将被输出到此包下,请认真核实此包名是否是你需要输出的目标包名"
+        />  
+
+
+  
+
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
